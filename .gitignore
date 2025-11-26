@@ -1,0 +1,41 @@
+# NEXT.js
+.next/
+out/
+node_modules/
+
+# Ambiente
+.env
+.env.*
+
+# Sistema
+dist/
+build/
+coverage/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Vercel
+.vercel/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Arquivos que NÃO devem entrar
+*.html
+*.pdf
+*.txt
+scripts/
+docs/
+GUIA/
+prompts/
+__tests__/
+

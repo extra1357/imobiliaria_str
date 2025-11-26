@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: str
+      POSTGRES_PASSWORD: str123
+      POSTGRES_DB: imobiliaria_str
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://str:str123@db:5432/imobiliaria_str
+
+volumes:
+  pgdata:

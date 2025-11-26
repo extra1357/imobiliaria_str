@@ -1,0 +1,176 @@
+'use client'
+import React from 'react';
+
+export default function HomePage() {
+  const sections = [
+    {
+      title: 'Dashboard',
+      emoji: '📊',
+      items: [
+        { name: 'Painel Principal', path: '/dashboard', emoji: '📈' }
+      ]
+    },
+    {
+      title: 'Leads',
+      emoji: '👥',
+      items: [
+        { name: 'Lista de Leads', path: '/leads', emoji: '📋' },
+        { name: 'Novo Lead', path: '/leads/novo', emoji: '➕' },
+        { name: 'Relatório de Leads', path: '/leads/relatorio', emoji: '📄' }
+      ]
+    },
+    {
+      title: 'Imóveis',
+      emoji: '🏠',
+      items: [
+        { name: 'Lista de Imóveis', path: '/imoveis', emoji: '📋' },
+        { name: 'Novo Imóvel', path: '/imoveis/novo', emoji: '➕' },
+        { name: 'Imóveis Disponíveis', path: '/imoveis/disponiveis', emoji: '🏘️' }
+      ]
+    },
+    {
+      title: 'Proprietários',
+      emoji: '👤',
+      items: [
+        { name: 'Lista de Proprietários', path: '/proprietarios', emoji: '📋' },
+        { name: 'Novo Proprietário', path: '/proprietarios/novo', emoji: '➕' }
+      ]
+    },
+    {
+      title: 'Consultas',
+      emoji: '📅',
+      items: [
+        { name: 'Agenda de Consultas', path: '/consultas', emoji: '🗓️' },
+        { name: 'Nova Consulta', path: '/consultas/nova', emoji: '➕' },
+        { name: 'Histórico', path: '/consultas/historico', emoji: '📋' }
+      ]
+    },
+    {
+      title: 'Análise de Mercado',
+      emoji: '📈',
+      items: [
+        { name: 'Análises', path: '/analise-mercado', emoji: '💹' },
+        { name: 'Nova Análise', path: '/analise-mercado/nova', emoji: '➕' },
+        { name: 'Relatórios', path: '/analise-mercado/relatorios', emoji: '📄' }
+      ]
+    }
+  ];
+
+  const apiRoutes = [
+    { method: 'GET', path: '/api/leads', desc: 'Listar leads' },
+    { method: 'POST', path: '/api/leads', desc: 'Criar lead' },
+    { method: 'GET', path: '/api/imoveis', desc: 'Listar imóveis' },
+    { method: 'GET', path: '/api/proprietarios', desc: 'Listar proprietários' },
+    { method: 'GET', path: '/api/consultas', desc: 'Listar consultas' },
+    { method: 'GET', path: '/api/analise-mercado', desc: 'Análises' }
+  ];
+
+  const handleNavigate = (path: string) => {
+    window.location.href = path;
+  };
+
+  return (
+    <div className="h-screen flex flex-col bg-gray-100">
+      {/* Header estilo Facebook */}
+      <header className="bg-[#1877F2] shadow-md px-4 sm:px-6 py-3">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-2xl">
+              🏢
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-white">IMOBILIÁRIA STR</h1>
+              <p className="text-xs text-blue-100">Sistema de Gestão</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Conteúdo principal com scroll */}
+      <main className="flex-1 overflow-y-auto bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+          
+          {/* Grid de Módulos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {sections.map((section, idx) => (
+              <div 
+                key={idx}
+                className="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden"
+              >
+                {/* Header do Card estilo Facebook */}
+                <div className="bg-[#1877F2] px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{section.emoji}</span>
+                    <h2 className="text-sm font-semibold text-white">{section.title}</h2>
+                  </div>
+                </div>
+                
+                {/* Links do Card */}
+                <div className="p-2">
+                  {section.items.map((item, itemIdx) => (
+                    <button
+                      key={itemIdx}
+                      onClick={() => handleNavigate(item.path)}
+                      className="w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 transition text-left group"
+                    >
+                      <span className="text-lg">{item.emoji}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {item.name}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {item.path}
+                        </p>
+                      </div>
+                      <span className="text-gray-400 group-hover:text-[#1877F2] transition text-sm">
+                        →
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Seção API Routes */}
+          <div className="bg-white rounded-lg shadow">
+            <div className="bg-[#1877F2] px-4 py-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🔌</span>
+                <h3 className="text-sm font-semibold text-white">Rotas da API</h3>
+              </div>
+            </div>
+            
+            <div className="p-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {apiRoutes.map((api, idx) => (
+                  <div 
+                    key={idx}
+                    className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg hover:border-[#1877F2] transition"
+                  >
+                    <div className={`px-2 py-1 rounded text-xs font-semibold ${
+                      api.method === 'GET' 
+                        ? 'bg-blue-100 text-[#1877F2]' 
+                        : 'bg-green-100 text-green-700'
+                    }`}>
+                      {api.method}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-mono text-gray-900 truncate mb-1">
+                        {api.path}
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        {api.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  );
+}
