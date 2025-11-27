@@ -1,14 +1,23 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+interface Imovel {
+  id: string | number
+  tipo?: string
+  cidade?: string
+  preco?: number
+  descricao?: string
+  disponivel: boolean
+}
+
 export default function ImoveisDisponiveis() {
-  const [imoveis, setImoveis] = useState([])
+  const [imoveis, setImoveis] = useState<Imovel[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     // Função de retry com backoff exponencial
-    const fetchWithRetry = async (url, attempts = 5) => {
+    const fetchWithRetry = async (url: string, attempts: number = 5): Promise<any> => {
       let delay = 1000;
       for (let i = 0; i < attempts; i++) {
         try {
@@ -36,10 +45,9 @@ export default function ImoveisDisponiveis() {
         const dataArray = Array.isArray(d) ? d : (d.data || []);
         
         // Filtra novamente apenas para garantir que a propriedade 'disponivel' seja verdadeira
-        const disponiveis = dataArray.filter((i) => i.disponivel)
+        const disponiveis = dataArray.filter((i: Imovel) => i.disponivel)
         
         setImoveis(disponiveis)
-
       } catch (e) {
         console.error("Erro ao carregar imóveis:", e)
         setError("Não foi possível carregar os dados dos imóveis.")
