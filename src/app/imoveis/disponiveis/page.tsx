@@ -89,18 +89,4 @@ export default function ImoveisDisponiveis() {
   return (
     <div className="p-4 sm:p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-6 text-gray-800 border-b pb-2">Imóveis Disponíveis</h1>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {imoveis.map((i) => (
-          <div key={i.id} className="p-6 bg-white border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-            <h3 className="text-xl font-bold text-blue-600 truncate">{i.tipo || 'Imóvel Genérico'}</h3>
-            <p className="text-gray-600 mt-1">{i.cidade || 'Localização Desconhecida'}</p>
-            <p className="text-2xl font-extrabold text-green-700 mt-3">
-              R$ {i.preco ? i.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'Preço Indisponível'}
-            </p>
-            {i.descricao && <p className="text-sm text-gray-500 mt-2 line-clamp-2">{i.descricao}</p>}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+      <div className="grid sm:grid
