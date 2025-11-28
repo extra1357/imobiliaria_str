@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function ProprietariosPage() {
-  const [props, setProps] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [props, setProps] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     fetch('/api/proprietarios')

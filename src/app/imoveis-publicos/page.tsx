@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function ImoveisPublicos() {
-  const [imoveis, setImoveis] = useState([])
-  const [filtro, setFiltro] = useState({ tipo: 'todos', maxPreco: 9999999 })
-  const [loading, setLoading] = useState(true)
+  const [imoveis, setImoveis] = useState<any[]>([])
+  const [filtro, setFiltro] = useState<any>({ tipo: 'todos', maxPreco: 9999999 })
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     // BUSCAR DO BANCO EM VEZ DE MOCK

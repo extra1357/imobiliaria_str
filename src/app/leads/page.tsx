@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function LeadsPage() {
-  const [leads, setLeads] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [leads, setLeads] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch('/api/leads')

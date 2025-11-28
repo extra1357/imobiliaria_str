@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function FunilVendas() {
   const [consultas, setConsultas] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch('/api/consultas')
@@ -116,7 +116,7 @@ export default function FunilVendas() {
 }
 
 function ConsultaCard({ consulta, onUpdate }: any) {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   return (
     <>
@@ -154,7 +154,7 @@ function ModalAtualizarStatus({ consulta, onClose, onUpdate }: any) {
   const [observacoes, setObservacoes] = useState(consulta.observacoes || '')
   const [valorProposta, setValorProposta] = useState(consulta.valorProposta || '')
   const [motivoCancelamento, setMotivoCancelamento] = useState(consulta.motivoCancelamento || '')
-  const [salvando, setSalvando] = useState(false)
+  const [salvando, setSalvando] = useState<boolean>(false)
 
   const handleSalvar = async () => {
     setSalvando(true)

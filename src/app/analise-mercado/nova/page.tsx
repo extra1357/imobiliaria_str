@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation'
 
 export default function NovaAnalise() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [resultado, setResultado] = useState<any>(null)
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<any>({
     cidade: '',
     estado: 'SP'
   })

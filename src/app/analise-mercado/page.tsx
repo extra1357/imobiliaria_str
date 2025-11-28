@@ -17,7 +17,7 @@ interface Analise {
 
 export default function AnaliseMercado() {
   const [analises, setAnalises] = useState<Analise[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch('/api/analise-mercado')

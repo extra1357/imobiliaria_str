@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function ConsultasPage() {
-  const [consultas, setConsultas] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [consultas, setConsultas] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch('/api/consultas')

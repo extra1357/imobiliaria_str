@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function Dashboard() {
-  const [stats, setStats] = useState({ leads: 0, imoveis: 0, consultas: 0, analises: 0 })
-  const [loading, setLoading] = useState(true)
+  const [stats, setStats] = useState<any>({ leads: 0, imoveis: 0, consultas: 0, analises: 0 })
+  const [loading, setLoading] = useState<boolean>(true)
   
   useEffect(() => {
     Promise.all([

@@ -26,12 +26,12 @@ interface FormData {
 
 export default function NovoImovel() {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [imagensPreviews, setImagensPreviews] = useState<string[]>([])
   const [imagensBase64, setImagensBase64] = useState<string[]>([])
   const [proprietarios, setProprietarios] = useState<Proprietario[]>([])
-  const [loadingProprietarios, setLoadingProprietarios] = useState(true)
+  const [loadingProprietarios, setLoadingProprietarios] = useState<boolean>(true)
   
   const [formData, setFormData] = useState<FormData>({
     tipo: 'CASA',
@@ -99,7 +99,7 @@ export default function NovoImovel() {
     const newBase64Images: string[] = []
     let processedFiles = 0
 
-    Array.from(files).forEach((file) => {
+    Array.from(files).forEach((file: any) => {
       const reader = new FileReader()
       
       reader.onloadend = () => {
@@ -238,7 +238,7 @@ export default function NovoImovel() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">Selecione um proprietário</option>
-                  {proprietarios.map((prop) => (
+                  {proprietarios.map((prop: any) => (
                     <option key={prop.id} value={prop.id}>
                       {prop.nome} - {prop.email} - {prop.telefone}
                     </option>

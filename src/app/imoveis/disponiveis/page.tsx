@@ -12,7 +12,7 @@ interface Imovel {
 
 export default function ImoveisDisponiveis() {
   const [imoveis, setImoveis] = useState<Imovel[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {

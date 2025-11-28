@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
 export function useLeads() {
-  const [leads, setLeads] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [leads, setLeads] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetch('/api/leads')

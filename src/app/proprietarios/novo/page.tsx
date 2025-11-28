@@ -13,11 +13,11 @@ interface FormData {
 
 export default function NovoProprietario() {
   // Estados de controle da UI
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState<boolean>(false)
   const [proprietarioId, setProprietarioId] = useState<string | null>(null)
-  const [copySuccess, setCopySuccess] = useState(false)
+  const [copySuccess, setCopySuccess] = useState<boolean>(false)
 
   // Estado do formulário
   const [formData, setFormData] = useState<FormData>({
@@ -162,7 +162,7 @@ export default function NovoProprietario() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Campos do Formulário */}
-            {['nome', 'email', 'telefone', 'cpf'].map((fieldKey) => {
+            {['nome', 'email', 'telefone', 'cpf'].map((fieldKey: any) => {
               const labelMap = {
                 nome: 'Nome Completo',
                 email: 'Email',

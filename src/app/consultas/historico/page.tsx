@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function HistoricoConsultas() {
-  const [consultas, setConsultas] = useState([])
-  const [filtro, setFiltro] = useState('todas')
+  const [consultas, setConsultas] = useState<any[]>([])
+  const [filtro, setFiltro] = useState<string>('todas')
 
   useEffect(() => {
     fetch('/api/consultas')

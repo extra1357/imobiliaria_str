@@ -107,11 +107,11 @@ const EmptyState: React.FC<{ activeTab: string }> = ({ activeTab }) => (
 export default function GerenciadorStatusImoveis() {
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
   const [proprietarios, setProprietarios] = useState<Proprietario[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [updating, setUpdating] = useState<string | null>(null);
   const [message, setMessage] = useState<Message>({ text: '', type: 'info' });
   const [activeTab, setActiveTab] = useState<'ativos' | 'inativos'>('ativos');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [stats, setStats] = useState<Stats>({
     ativos: 0,
     vendidos: 0,
@@ -298,9 +298,9 @@ export default function GerenciadorStatusImoveis() {
         i.id.toLowerCase().includes(search)
       );
     })
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-  const proprietarioMap = proprietarios.reduce((acc, p) => {
+  const proprietarioMap = proprietarios.reduce((acc: any, p: any) => {
     acc[p.id] = p.nome;
     return acc;
   }, {} as Record<string, string>);
@@ -336,7 +336,7 @@ export default function GerenciadorStatusImoveis() {
                 src={imovel.imagens[0] || 'https://placehold.co/48x48/e5e7eb/6b7280?text=Sem+Foto'}
                 alt="Miniatura do imóvel"
                 className="w-14 h-14 object-cover rounded-lg shadow-sm mr-3 border border-gray-200"
-                onError={(e) => {
+                onError={(e: any) => {
                   e.currentTarget.src = 'https://placehold.co/48x48/e5e7eb/6b7280?text=Erro';
                 }}
               />
@@ -380,7 +380,7 @@ export default function GerenciadorStatusImoveis() {
           {imovel.status === 'ATIVO' ? (
             <select
               className="px-3 py-2 text-sm border border-red-300 bg-white rounded-lg shadow-sm focus:ring-2 focus:ring-red-500 focus:border-red-500 font-semibold text-red-600 hover:bg-red-50 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              onChange={(e) => {
+              onChange={(e: any) => {
                 if (e.target.value) {
                   handleMudarStatus(imovel.id, e.target.value as StatusImovel);
                   e.target.value = '';
@@ -457,7 +457,7 @@ export default function GerenciadorStatusImoveis() {
             type="text"
             placeholder="🔍 Buscar por tipo, endereço, cidade ou ID..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e: any) => setSearchTerm(e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
           />
         </div>

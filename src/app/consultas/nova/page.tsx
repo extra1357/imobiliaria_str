@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation'
 
 export default function NovaConsulta() {
   const router = useRouter()
-  const [leads, setLeads] = useState([])
-  const [imoveis, setImoveis] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [form, setForm] = useState({
+  const [leads, setLeads] = useState<any[]>([])
+  const [imoveis, setImoveis] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [form, setForm] = useState<any>({
     leadId: '',
     imovelId: '',
     tipo: 'visita',

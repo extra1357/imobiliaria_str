@@ -2,9 +2,9 @@
 import { useState } from 'react'
 
 export default function BuscaInteligente() {
-  const [query, setQuery] = useState('')
-  const [resultados, setResultados] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [query, setQuery] = useState<string>('')
+  const [resultados, setResultados] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const buscar = async () => {
     setLoading(true)

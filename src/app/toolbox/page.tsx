@@ -73,7 +73,7 @@ export default function Toolbox() {
     }
   ];
 
-  const handleNavigate = (path) => {
+  const handleNavigate = (path: string) => {
     // Para usar em Next.js, descomente a linha abaixo:
     // window.location.href = path;
     alert(`Navegando para: ${path}`);

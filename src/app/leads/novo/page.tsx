@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 export default function NovoLead() {
   const router = useRouter()
-  const [form, setForm] = useState({ nome: '', email: '', telefone: '', origem: 'site' })
+  const [form, setForm] = useState<any>({ nome: '', email: '', telefone: '', origem: 'site' })
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()

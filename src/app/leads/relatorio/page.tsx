@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function RelatorioLeads() {
-  const [stats, setStats] = useState({ total: 0, quente: 0, morno: 0, frio: 0 })
-  const [leads, setLeads] = useState([])
+  const [stats, setStats] = useState<any>({ total: 0, quente: 0, morno: 0, frio: 0 })
+  const [leads, setLeads] = useState<any[]>([])
 
   useEffect(() => {
     fetch('/api/leads').then(r => r.json()).then(d => {

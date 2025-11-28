@@ -20,7 +20,7 @@ export default function RelatoriosAnalise() {
         const data: AnaliseMercado[] = d.data || []
         setAnalises(data)
 
-        const uniqueCidades = [...new Set(data.map((a) => a.cidade))]
+        const uniqueCidades = [...new Set(data.map((a: any) => a.cidade))]
         setCidades(uniqueCidades)
       })
   }, [])
@@ -34,7 +34,7 @@ export default function RelatoriosAnalise() {
 
       <div className="grid gap-6">
         {cidades.map(cidade => {
-          const analiseCidade = analises.filter((a) => a.cidade === cidade)
+          const analiseCidade = analises.filter((a: any) => a.cidade === cidade)
           const ultima = analiseCidade[0] || null
           
           return (

@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function ImoveisPage() {
-  const [imoveis, setImoveis] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [imoveis, setImoveis] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<any>(null)
 
   useEffect(() => {
     console.log('🔄 Iniciando busca de imóveis...')
