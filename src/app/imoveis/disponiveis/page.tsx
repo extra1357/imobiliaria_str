@@ -16,7 +16,6 @@ export default function ImoveisDisponiveis() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Função de retry com backoff exponencial
     const fetchWithRetry = async (url: string, attempts: number = 5): Promise<any> => {
       let delay = 1000;
       for (let i = 0; i < attempts; i++) {
@@ -28,7 +27,6 @@ export default function ImoveisDisponiveis() {
           return response.json();
         } catch (e) {
           if (i === attempts - 1) throw e;
-          // Exponential backoff
           await new Promise(resolve => setTimeout(resolve, delay));
           delay *= 2;
         }
@@ -40,13 +38,8 @@ export default function ImoveisDisponiveis() {
       setError(null)
       try {
         const d = await fetchWithRetry('/api/imoveis?disponivel=true')
-        
-        // Assumindo que a API retorna { data: [...] } ou diretamente [...]
         const dataArray = Array.isArray(d) ? d : (d.data || []);
-        
-        // Filtra novamente apenas para garantir que a propriedade 'disponivel' seja verdadeira
         const disponiveis = dataArray.filter((i: Imovel) => i.disponivel)
-        
         setImoveis(disponiveis)
       } catch (e) {
         console.error("Erro ao carregar imóveis:", e)
@@ -72,7 +65,7 @@ export default function ImoveisDisponiveis() {
     return (
       <div className="p-8 text-center bg-red-100 border border-red-400 text-red-700 rounded">
         <p>{error}</p>
-        <p className="text-sm mt-2">Verifique se o seu endpoint `/api/imoveis` está funcionando corretamente.</p>
+        <p className="text-sm mt-2">Verifique se o endpoint /api/imoveis está funcionando corretamente.</p>
       </div>
     )
   }
@@ -89,4 +82,21 @@ export default function ImoveisDisponiveis() {
   return (
     <div className="p-4 sm:p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-extrabold mb-6 text-gray-800 border-b pb-2">Imóveis Disponíveis</h1>
-      <div className="grid sm:grid
+
+      <div className="grid sm:grid-cols-2 gap-6">
+        {imoveis.map((i) => (
+          <div key={i.id} className="p-4 border rounded-lg shadow bg-white">
+            <h2 className="text-xl font-semibold">{i.tipo || "Imóvel"}</h2>
+            <p className="text-gray-600">{i.cidade}</p>
+            {i.preco && (
+              <p className="text-lg font-bold mt-2">
+                R$ {i.preco.toLocaleString('pt-BR')}
+              </p>
+            )}
+            <p className="text-sm text-gray-700 mt-2">{i.descricao}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
