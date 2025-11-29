@@ -8,18 +8,25 @@ const leadSchema = z.object({
   origem: z.string(),
 })
 
+type LeadData = z.infer<typeof leadSchema>
+
 export class LeadService extends BaseService {
-  async create(data: z.infer<typeof leadSchema>) {
-    const valid = this.validate(data, leadSchema)
+  async create(data: LeadData) {
+    const valid = this.validate(data, leadSchema) as LeadData
     const status = this.classifyLead(valid)
-    return await this.db.lead.create({ data: { ...valid, status } })
+    return await this.db.lead.create({ 
+      data: { 
+        ...valid, 
+        status 
+      } 
+    })
   }
 
   async list() {
     return await this.db.lead.findMany({ orderBy: { dataCaptcha: 'desc' } })
   }
 
-  private classifyLead(data: any): string {
+  private classifyLead(data: LeadData): string {
     if (data.email.includes('@gmail')) return 'morno'
     if (data.origem === 'site') return 'quente'
     return 'frio'
