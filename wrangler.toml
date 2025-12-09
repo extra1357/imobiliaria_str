@@ -7,17 +7,3 @@ command = "npm run build"
 
 [env.production]
 vars = { NODE_ENV = "production" }
-```
-
----
-
-## **Arquivo `.gitignore` corrigido:**
-```
-.env
-.env.local
-.env*.local
-node_modules
-.next
-.vercel
-dist
-build
