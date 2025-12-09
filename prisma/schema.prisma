@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_DIRECT")
 }
 
 model Lead {
@@ -18,7 +19,7 @@ model Lead {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   consultas   Consulta[]
-
+  
   @@index([email])
   @@index([status])
   @@index([origem])
@@ -41,7 +42,7 @@ model Imovel {
   status         String       @default("ATIVO")
   consultas      Consulta[]
   proprietario   Proprietario @relation(fields: [proprietarioId], references: [id])
-
+  
   @@index([cidade])
   @@index([estado])
   @@index([disponivel])
@@ -58,7 +59,7 @@ model Proprietario {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   imoveis   Imovel[]
-
+  
   @@index([email])
 }
 
@@ -79,7 +80,7 @@ model Consulta {
   valorProposta      Float?
   imovel             Imovel    @relation(fields: [imovelId], references: [id], onDelete: Cascade)
   lead               Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
-
+  
   @@index([data])
   @@index([status])
   @@index([leadId])
@@ -98,7 +99,7 @@ model AnaliseMercado {
   tendencia   String?
   observacoes String?
   relatorios  Relatorio[]
-
+  
   @@index([cidade])
   @@index([estado])
   @@index([dataAnalise])
@@ -114,7 +115,7 @@ model Relatorio {
   geradoPor   String?
   analiseId   String?
   analise     AnaliseMercado? @relation(fields: [analiseId], references: [id])
-
+  
   @@index([tipo])
   @@index([dataGeracao])
 }
@@ -129,7 +130,7 @@ model Auditoria {
   ip         String?
   userAgent  String?
   createdAt  DateTime @default(now())
-
+  
   @@index([acao])
   @@index([tabela])
   @@index([usuario])
@@ -145,7 +146,7 @@ model Usuario {
   ativo     Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  
   @@index([email])
   @@index([role])
 }

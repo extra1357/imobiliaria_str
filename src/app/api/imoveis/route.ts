@@ -39,7 +39,11 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Retornando ${imoveis.length} imóveis (publico: ${publico})`);
 
-    return NextResponse.json(imoveis, {
+    // ✅ ALTERAÇÃO FEITA AQUI: Agora retorna { data, total }
+    return NextResponse.json({
+      data: imoveis,
+      total: imoveis.length
+    }, {
       status: 200,
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',

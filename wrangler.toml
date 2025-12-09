@@ -1,0 +1,20 @@
+name = "imobiliaria-str"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".vercel/output/static"
+
+[build]
+command = "npm run build"
+
+[env.production]
+vars = { NODE_ENV = "production" }
+```
+
+### 3️⃣ **Verificar se existe `.gitignore`:**
+
+Confirme que seu `.gitignore` tem essas linhas:
+```
+.env
+.env.local
+.env*.local
+node_modules
+.next
