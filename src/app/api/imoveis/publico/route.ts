@@ -1,6 +1,9 @@
 // app/api/imoveis/publico/route.ts
 // Esta rota retorna APENAS imóveis ATIVOS (visíveis ao público)
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 

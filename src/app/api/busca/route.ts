@@ -1,3 +1,6 @@
+
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { NextRequest } from 'next/server'
 import buscaService from '@/services/busca-service'
 import { successResponse, errorResponse } from '@/utils/api-response'

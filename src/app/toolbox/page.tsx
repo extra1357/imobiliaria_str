@@ -1,3 +1,7 @@
+'use client'
+
+export const dynamic = 'force-dynamic';
+
 import React from 'react';
 import { 
   Users, 
@@ -74,9 +78,7 @@ export default function Toolbox() {
   ];
 
   const handleNavigate = (path: string) => {
-    // Para usar em Next.js, descomente a linha abaixo:
-    // window.location.href = path;
-    alert(`Navegando para: ${path}`);
+    window.location.href = path;
   };
 
   return (

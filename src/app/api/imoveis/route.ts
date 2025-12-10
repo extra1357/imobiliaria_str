@@ -1,6 +1,11 @@
 // ============================================================================
 // src/app/api/imoveis/route.ts
 // ============================================================================
+
+// ✅ ADICIONADO: Força rota dinâmica e runtime edge
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
@@ -39,7 +44,6 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Retornando ${imoveis.length} imóveis (publico: ${publico})`);
 
-    // ✅ ALTERAÇÃO FEITA AQUI: Agora retorna { data, total }
     return NextResponse.json({
       data: imoveis,
       total: imoveis.length
@@ -68,7 +72,7 @@ export async function POST(request: NextRequest) {
 
     console.log('📝 Criando novo imóvel:', body);
 
-    // Validações obrigatórias (conforme Prisma schema)
+    // Validações obrigatórias
     if (!body.tipo || !body.endereco || !body.cidade || !body.estado || body.preco === undefined || body.metragem === undefined || !body.proprietarioId) {
       return NextResponse.json(
         { error: 'Campos obrigatórios: tipo, endereco, cidade, estado, preco, metragem, proprietarioId' },
@@ -88,7 +92,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Cria o imóvel (conforme model Imovel do Prisma)
+    // Cria o imóvel
     const novoImovel = await prisma.imovel.create({
       data: {
         tipo: body.tipo,
@@ -99,9 +103,9 @@ export async function POST(request: NextRequest) {
         metragem: parseFloat(body.metragem),
         descricao: body.descricao || null,
         proprietarioId: body.proprietarioId,
-        status: 'ATIVO', // default do schema
-        disponivel: true, // default do schema
-        imagens: body.imagens || [] // default do schema
+        status: 'ATIVO',
+        disponivel: true,
+        imagens: body.imagens || []
       },
       include: {
         proprietario: {

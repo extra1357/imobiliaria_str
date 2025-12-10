@@ -1,3 +1,6 @@
+
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { NextRequest, NextResponse } from 'next/server'
 import leadService from '@/services/lead-service'
 import { successResponse, errorResponse } from '@/utils/api-response'
