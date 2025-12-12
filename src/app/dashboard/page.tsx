@@ -50,11 +50,13 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center gap-2">
               <a 
-                href="/index.html"
+                href="/site"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/20 text-white text-sm font-medium rounded-lg hover:bg-white/30 transition"
               >
                 <span>🏠</span>
-                <span>Site</span>
+                <span>Ver Vitrine</span>
               </a>
               <Link 
                 href="/analise-mercado/nova"
@@ -73,12 +75,23 @@ export default function Dashboard() {
         
         {/* Banner de boas-vindas */}
         <div className="bg-gradient-to-r from-blue-600 via-[#1877F2] to-purple-600 rounded-2xl p-6 sm:p-8 mb-8 text-white shadow-xl">
-          <div className="flex items-center gap-4">
-            <span className="text-5xl">📊</span>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold">Visão Geral do Sistema</h2>
-              <p className="text-blue-100">Acompanhe todas as métricas em tempo real</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span className="text-5xl">📊</span>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold">Visão Geral do Sistema</h2>
+                <p className="text-blue-100">Acompanhe todas as métricas em tempo real</p>
+              </div>
             </div>
+            <a 
+              href="/site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 px-6 py-3 bg-white text-[#1877F2] rounded-lg font-semibold hover:bg-blue-50 transition shadow-lg"
+            >
+              <span>🏠</span>
+              <span>Acessar Vitrine</span>
+            </a>
           </div>
         </div>
 
@@ -206,10 +219,27 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Banner mobile IA */}
+        {/* Banner mobile - Vitrine */}
+        <a 
+          href="/site"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sm:hidden block mt-6 bg-gradient-to-r from-green-600 to-green-500 rounded-xl p-4 text-white shadow-lg"
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">🏠</span>
+            <div className="flex-1">
+              <div className="font-semibold">Vitrine de Imóveis</div>
+              <div className="text-xs text-green-100">Acessar site público</div>
+            </div>
+            <span className="text-xl">→</span>
+          </div>
+        </a>
+
+        {/* Banner mobile - IA */}
         <Link 
           href="/analise-mercado/nova"
-          className="sm:hidden block mt-6 bg-[#1877F2] rounded-xl p-4 text-white shadow-lg"
+          className="sm:hidden block mt-3 bg-[#1877F2] rounded-xl p-4 text-white shadow-lg"
         >
           <div className="flex items-center gap-3">
             <span className="text-3xl">🤖</span>
