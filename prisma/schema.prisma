@@ -19,10 +19,11 @@ model Lead {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   consultas   Consulta[]
-  
+
   @@index([email])
   @@index([status])
   @@index([origem])
+  @@map("leads")
 }
 
 model Imovel {
@@ -31,8 +32,8 @@ model Imovel {
   endereco       String
   cidade         String
   estado         String
-  preco          Float
-  metragem       Float
+  preco          Decimal      @db.Decimal(12, 2)
+  metragem       Decimal      @db.Decimal(10, 2)
   descricao      String?
   disponivel     Boolean      @default(true)
   proprietarioId String
@@ -41,13 +42,15 @@ model Imovel {
   imagens        String[]     @default([])
   status         String       @default("ATIVO")
   consultas      Consulta[]
-  proprietario   Proprietario @relation(fields: [proprietarioId], references: [id])
-  
+  proprietario   Proprietario @relation(fields: [proprietarioId], references: [id], onDelete: Cascade)
+
   @@index([cidade])
   @@index([estado])
   @@index([disponivel])
   @@index([tipo])
   @@index([status])
+  @@index([proprietarioId])
+  @@map("imoveis")
 }
 
 model Proprietario {
@@ -59,8 +62,10 @@ model Proprietario {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   imoveis   Imovel[]
-  
+
   @@index([email])
+  @@index([cpf])
+  @@map("proprietarios")
 }
 
 model Consulta {
@@ -72,37 +77,39 @@ model Consulta {
   tipo               String    @default("visita")
   status             String    @default("agendada")
   observacoes        String?
-  comissao           Float?
+  comissao           Decimal?  @db.Decimal(10, 2)
   createdAt          DateTime  @default(now())
   dataFechamento     DateTime?
   motivoCancelamento String?
   updatedAt          DateTime  @updatedAt
-  valorProposta      Float?
+  valorProposta      Decimal?  @db.Decimal(12, 2)
   imovel             Imovel    @relation(fields: [imovelId], references: [id], onDelete: Cascade)
   lead               Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
-  
+
   @@index([data])
   @@index([status])
   @@index([leadId])
   @@index([imovelId])
+  @@map("consultas")
 }
 
 model AnaliseMercado {
   id          String      @id @default(uuid())
   cidade      String
   estado      String      @default("SP")
-  valorM2     Float
-  valorMinimo Float?
-  valorMaximo Float?
+  valorM2     Decimal     @db.Decimal(10, 2)
+  valorMinimo Decimal?    @db.Decimal(12, 2)
+  valorMaximo Decimal?    @db.Decimal(12, 2)
   dataAnalise DateTime    @default(now())
   fonte       String
   tendencia   String?
   observacoes String?
   relatorios  Relatorio[]
-  
+
   @@index([cidade])
   @@index([estado])
   @@index([dataAnalise])
+  @@map("analises_mercado")
 }
 
 model Relatorio {
@@ -115,9 +122,11 @@ model Relatorio {
   geradoPor   String?
   analiseId   String?
   analise     AnaliseMercado? @relation(fields: [analiseId], references: [id])
-  
+
   @@index([tipo])
   @@index([dataGeracao])
+  @@index([analiseId])
+  @@map("relatorios")
 }
 
 model Auditoria {
@@ -130,11 +139,12 @@ model Auditoria {
   ip         String?
   userAgent  String?
   createdAt  DateTime @default(now())
-  
+
   @@index([acao])
   @@index([tabela])
   @@index([usuario])
   @@index([createdAt])
+  @@map("auditorias")
 }
 
 model Usuario {
@@ -146,7 +156,8 @@ model Usuario {
   ativo     Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   @@index([email])
   @@index([role])
+  @@map("usuarios")
 }
