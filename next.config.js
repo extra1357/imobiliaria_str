@@ -6,13 +6,30 @@ const nextConfig = {
       allowedOrigins: ['imobiliariastr.com', '*.pages.dev']
     }
   },
-  // Força rotas dinâmicas para não tentar static generation
+  
+  // Redireciona /site para o HTML estático
+  async rewrites() {
+    return [
+      {
+        source: '/site',
+        destination: '/site/index.html',
+      },
+    ];
+  },
+  
+  // Headers para cache
   async headers() {
     return [
       {
         source: '/api/:path*',
         headers: [
           { key: 'Cache-Control', value: 'no-store, must-revalidate' }
+        ]
+      },
+      {
+        source: '/site/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }
         ]
       }
     ]
